@@ -2,11 +2,18 @@
 
 namespace MusicPlayerDevice
 {
-    class Program
+    public class Program
     {
+        static MusicPlayer player = new MusicPlayer();
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string str = "";
+            do
+            {
+
+                Console.WriteLine("Now Playing " + player.PrintMessage() + System.Environment.NewLine);
+                str = Console.ReadLine();
+            } while (str != "n");
         }
     }
 }
