@@ -7,6 +7,7 @@ namespace MusicPlayerDevice
         static MusicPlayer player = new MusicPlayer();
         static void Main(string[] args)
         {
+           
             string str = "";
             do
             {

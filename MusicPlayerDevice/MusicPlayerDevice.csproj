@@ -7,10 +7,17 @@
 
   <ItemGroup>
     <PackageReference Include="M2Mqtt" Version="4.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.0-alpha2" />
+    <PackageReference Include="Vlc.DotNet.Core" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\MQTTApplication\MQTTCommon\MQTTCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Music\" />
   </ItemGroup>
 
 </Project>
