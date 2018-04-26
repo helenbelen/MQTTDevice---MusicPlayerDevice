@@ -24,7 +24,7 @@ namespace MusicPlayerDevice
         static private readonly string baseURL = MQTTCommon.Resources.webApiUrl;
         static HttpClient httpClient;
       
-        static JArray result;
+        static string result;
 
         public static string GetURL(URLType type, int id = -1, string info = null)
         {
@@ -81,40 +81,24 @@ namespace MusicPlayerDevice
         }
 
 
-        public static JArray APIResponse {get{return result;} }
+        public static string APIResponse {get{return result;} }
 
-        public static async Task<JArray> GetInfo(URLType type, int id)
-        {
-           
-            httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync(new Uri(GetURL(type,id)));
-
-            result = JArray.Parse(response);
-            return result;
-        }
-        public static async Task<JArray> AddMusicData(URLType type, int id,string song)
-        {
-
-            httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync(new Uri(GetURL(type, id,song)));
-
-            result = JArray.Parse(response);
-            return result;
-        }
 
         public static async Task UpdateDeviceLocation(int id, string info)
         {
             httpClient = new HttpClient();
             HttpContent content = null;
             var response = httpClient.PutAsync(new Uri(GetURL(URLType.DEVICELOC,id,info)),content).Result;
-
+            result = await response.Content.ReadAsStringAsync();
         }
 
         public static async Task RegisterDevice(string info)
         {
             httpClient = new HttpClient();
-            var response = httpClient.GetStringAsync(new Uri(GetURL(URLType.DEVICEREG,-1,info))).Result;
-
+            
+            var response = httpClient.PostAsync(new Uri(GetURL(URLType.DEVICEREG,-1,info)), new StringContent(info)).Result;
+            result = await response.Content.ReadAsStringAsync();
+            
         }
     }
 }
