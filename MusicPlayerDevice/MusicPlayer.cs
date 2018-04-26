@@ -52,9 +52,10 @@ namespace MusicPlayerDevice
          public static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             double value;
+            string message = System.Text.Encoding.Default.GetString(e.Message);
             try
             {
-                 value = Double.Parse(System.Text.Encoding.Default.GetString(e.Message));
+                 value = Double.Parse(message.Split("-")[1]);
             }
             catch(Exception ex)
             {
