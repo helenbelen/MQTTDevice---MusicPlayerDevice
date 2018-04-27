@@ -4,12 +4,12 @@ namespace MusicPlayerDevice
 {
     public class Program
     {
-        static MusicPlayer player;
+       
         
         static void Main(string[] args)
         {
-            player = new MusicPlayer();
-        
+            MusicPlayer player = new MusicPlayer();
+            MusicPlayer.TasksUsingThreadPool();
             string str = "";
             do
             {

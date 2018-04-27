@@ -84,21 +84,23 @@ namespace MusicPlayerDevice
         public static string APIResponse {get{return result;} }
 
 
-        public static async Task UpdateDeviceLocation(int id, string info)
+        public static async Task<string> UpdateDeviceLocation(int id, string info)
         {
             httpClient = new HttpClient();
             HttpContent content = null;
             var response = httpClient.PutAsync(new Uri(GetURL(URLType.DEVICELOC,id,info)),content).Result;
             result = await response.Content.ReadAsStringAsync();
+            return result;
         }
 
-        public static async Task RegisterDevice(string info)
+        public static async Task<string> RegisterDevice(string info)
         {
             httpClient = new HttpClient();
             
             var response = httpClient.PostAsync(new Uri(GetURL(URLType.DEVICEREG,-1,info)), new StringContent(info)).Result;
             result = await response.Content.ReadAsStringAsync();
-            
+
+            return result;
         }
     }
 }
